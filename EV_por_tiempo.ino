@@ -2,7 +2,7 @@
 
 #define valve1 8 
 #define valve2 7
-#define interval 2 // intervlao de riego , 1 es por hora , 2 es media hora etc...
+#define h_anterior GET_HOUR()// intervlao de riego , 1 es por hora , 2 es media hora etc...
 
 void setup() {
   Serial.begin(9600);    // inicializa comunicacion serie a 9600 bps
@@ -12,16 +12,18 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-int Hour = GET_HOUR();
+  
+ControlValve();
 
 
-
+delay(10000);
 }
 
-void ControlValve(hour){
-float timeA = hour + (1/interval);
+void ControlValve(){
+int h_actual = GET_HOUR();
 
+if(h_actual != h_anterior)
+// TODO: encender valvular por un intervalo de tiempo 
+h_anterior=h_actual;
+}
 
-}
-}
