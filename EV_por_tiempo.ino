@@ -2,8 +2,8 @@
   
   #define valve1 8 
   #define valve2 7
-  
-  int h_anterior = 1;//GET_HOUR();
+
+  int h_anterior ;
   int h_actual ;
   
   void setup() {
@@ -12,21 +12,21 @@
       pinMode(valve1,OUTPUT);
       pinMode(valve2,OUTPUT);
       INICIAR_MODULO ();
+       h_anterior = GET_HOUR();
   }
   
   void loop() {
-      Serial.println("estoy en loop2");
-    //ControlValve();
-    
-    
-    delay(1000);
+    ControlValve();
+
+    delay(2000);
   }
   
   void ControlValve(){
      h_actual = GET_HOUR();
      
     if(h_actual != h_anterior){
-    // TODO: encender valvular por un intervalo de tiempo 
+    Serial.println("bomba  ENCENDIDO");
+    delay(3000);
     h_anterior = h_actual;
     }
     

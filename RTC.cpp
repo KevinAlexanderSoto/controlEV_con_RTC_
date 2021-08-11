@@ -6,21 +6,24 @@ RTC_DS3231 rtc;     // crea objeto del tipo RTC_DS3231
 
 void INICIAR_MODULO () {
  
-
  if (! rtc.begin()) {       // si falla la inicializacion del modulo
  Serial.println("Modulo RTC no encontrado !");  // muestra mensaje de error
- while (1);         // bucle infinito que detiene ejecucion del programa
+ Serial.flush();
+        abort();
  }
- rtc.adjust(DateTime(__DATE__, __TIME__));  // funcion que permite establecer fecha y horario
-            // al momento de la compilacion. Comentar esta linea
-}           // y volver a subir para normal operacion
+ Serial.println("Modulo RTC inicializado!");
+ if(rtc.lostPower()) {
+        // this will adjust to the date and time at compilation
+        rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    }  
+    //we don't need the 32K Pin, so disable it
+    rtc.disable32K();       
+}
 
 int GET_HOUR() {
  DateTime fecha = rtc.now();      // funcion que devuelve fecha y horario en formato
             // DateTime y asigna a variable fecha
    
- Serial.print(fecha.hour());      // funcion que obtiene la hora de la fecha completa
- Serial.print(":");       // caracter dos puntos como separador
-
+ return fecha.minute();
  delay(1000);         // demora de 1 segundo
 }
