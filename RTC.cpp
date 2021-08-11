@@ -3,7 +3,7 @@
 #include <RTClib.h>   // incluye libreria para el manejo del modulo RTC
 
 RTC_DS3231 rtc;     // crea objeto del tipo RTC_DS3231
-
+String daysOfTheWeek[7] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 void INICIAR_MODULO () {
  
  if (! rtc.begin()) {       // si falla la inicializacion del modulo
@@ -22,8 +22,18 @@ void INICIAR_MODULO () {
 
 int GET_HOUR() {
  DateTime fecha = rtc.now();      // funcion que devuelve fecha y horario en formato
-            // DateTime y asigna a variable fecha
-   
  return fecha.minute();
- delay(1000);         // demora de 1 segundo
+ delay(100);         // demora de 1 segundo
+}
+
+String GET_DAY(){
+  DateTime fecha = rtc.now(); 
+  Serial.println(daysOfTheWeek[fecha.dayOfTheWeek()]);
+  
+   
+  }
+
+int GET_TEMPERATURE(){// mide temperatura =O
+  
+return rtc.getTemperature();
 }
