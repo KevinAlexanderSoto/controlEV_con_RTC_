@@ -40,7 +40,7 @@ String GET_DAY(){
   
   }
 
-int GET_TEMPERATURE(){// mide temperatura =O
+int GET_RTCTEMPERATURE(){// mide temperatura =O
   
 return rtc.getTemperature();
 }

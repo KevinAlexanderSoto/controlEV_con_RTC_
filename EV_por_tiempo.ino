@@ -26,7 +26,7 @@
     Serial.println(GET_MINUTE());
     delay(100);
     Serial.print("TEMPERATURA:");
-    Serial.println( GET_TEMPERATURE());
+    Serial.println( GET_RTCTEMPERATURE());
 
   Serial.print("HUMIDITY:");
     Serial.println( GET_HUMIDITY());

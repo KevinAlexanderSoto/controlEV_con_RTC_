@@ -17,3 +17,7 @@ void INICIAR_MODULO_DHT(){
 float GET_HUMIDITY(){
     return dht.readHumidity();
 }
+
+float GET_TEMPERATURE(){
+    return dht.readTemperature();
+}
