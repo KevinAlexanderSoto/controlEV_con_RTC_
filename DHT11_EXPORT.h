@@ -1,0 +1,1 @@
+void INICIAR_MODULO_DHT();
