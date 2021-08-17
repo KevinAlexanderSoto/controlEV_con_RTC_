@@ -1,4 +1,7 @@
-  #include "RTC_EXPORT.h"
+  
+  #include "DHT11_EXPORT.h";
+  #include "RTC_EXPORT.h";
+  
   
   #define valve1 8 
   #define valve2 7
@@ -13,7 +16,8 @@
       Serial.println("serial init");// inicializa comunicacion serie a 9600 bps
       pinMode(valve1,OUTPUT);
       pinMode(valve2,OUTPUT);
-      INICIAR_MODULO ();// inicia el RTC con fecha de compilacion y setea otras opciones 
+      INICIAR_MODULO ();// inicia el RTC con fecha de compilacion y setea otras opciones
+      INICIAR_MODULO_DHT();
       h_activado = GET_MINUTE()+ intervalo_Activado;
   }
   void loop() {
@@ -23,7 +27,11 @@
     delay(100);
     Serial.print("TEMPERATURA:");
     Serial.println( GET_TEMPERATURE());
+
+  Serial.print("HUMIDITY:");
+    Serial.println( GET_HUMIDITY());
     Serial.println( "...........................");
+    
 
     delay(5000);
   }
