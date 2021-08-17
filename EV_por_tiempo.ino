@@ -12,13 +12,12 @@
       pinMode(valve1,OUTPUT);
       pinMode(valve2,OUTPUT);
       INICIAR_MODULO ();// inicia el RTC con fecha de compilacion y setea otras opciones 
-       h_anterior = GET_HOUR();
+       h_anterior = GET_MINUTE();
   }
-  
   void loop() {
     ControlValve();
     Serial.print("MINUTO:");
-    Serial.println(GET_HOUR());
+    Serial.println(GET_MINUTE());
     delay(100);
     Serial.print("TEMPERATURA:");
     Serial.println( GET_TEMPERATURE());
@@ -28,15 +27,28 @@
   }
   
   void ControlValve(){
-     h_actual = GET_HOUR();
+     h_actual = GET_MINUTE();
      
     if(h_actual != h_anterior){
-    Serial.println("LED ENCENDIDO");
+    Serial.println("VALVE1 ON");
     digitalWrite(valve1, HIGH);
-    delay(5000);
+  
+    int timeOff = 1 + GET_MINUTE();// le sumamos la cantidad de tiempo que va a estar prendido
+    
+    if(timeOff > 60){// para caso especial de usar minutos 
+      timeOff = timeOff - 60;
+      }
+      
+    while(timeOff != GET_MINUTE()){
+       delay(5000);  
+      };
+   
     digitalWrite(valve1, LOW);
-    Serial.println("LED APAGADO");
-    h_anterior = h_actual;
+    Serial.println("VALVE1 OFF");
+
+    // TODO: activar segunda salida "valve2"
+    
+    h_anterior = h_actual;// para volver a comparar y hacer el ciclo 
     }
     
   }

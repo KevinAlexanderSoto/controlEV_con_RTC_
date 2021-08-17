@@ -1,4 +1,5 @@
 void INICIAR_MODULO ();
 int GET_HOUR();
+int GET_MINUTE();
 char GET_DAY();
 int GET_TEMPERATURE();
