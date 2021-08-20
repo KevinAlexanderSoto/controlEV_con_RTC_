@@ -1,2 +1,0 @@
-void INICIAR_MODULO_DHT();
-float GET_HUMIDITY();

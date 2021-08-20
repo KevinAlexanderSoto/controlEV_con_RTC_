@@ -1,7 +1,5 @@
   
-  #include "DHT11_EXPORT.h";
   #include "RTC_EXPORT.h";
-  
   
   #define valve1 8 
   #define valve2 7
@@ -27,11 +25,12 @@
     delay(100);
     Serial.print("TEMPERATURA:");
     Serial.println( GET_RTCTEMPERATURE());
-
+ Serial.println( "...........................");
   Serial.print("HUMIDITY:");
     Serial.println( GET_HUMIDITY());
-    Serial.println( "...........................");
-    
+   
+    Serial.print("TEMPERATURA_DHT11:");
+    Serial.println( GET_TEMPERATURE());
 
     delay(5000);
   }
